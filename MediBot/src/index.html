@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCord</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase App and Authentication SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>HealthCord</h1>
+        <div id="authSection" class="auth-section">
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <div class="button-group">
+                <button class="btn" onclick="signup()">Sign Up</button>
+                <button class="btn" onclick="signin()">Sign In</button>
+                <button class="btn" onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+<!--         
+        <div id="chatSection" class="chat-section" style="display: none;">
+            <input type="text" id="userInput" placeholder="Ask about skin or hair care..." required />
+            <button class="btn send-btn" onclick="sendUserInput()">Send</button>
+        </div> -->
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>

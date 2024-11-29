@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+:root {
+    --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --msger-bg: #fff;
+    --left-msg-bg: #4b79a1a9;
+    --right-msg-bg: #cea915b6;
+    --text-color: #333;
+    --bot-text-color: #fff;
+    --user-text-color: #000;
+    --input-bg: #edc18d;
+    --border-radius: 10px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: var(--body-bg);
+    font-family: 'Baloo 2', cursive;
+}
+
+.msger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background: var(--msger-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.msger-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #eee;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+}
+
+.msger-header-title {
+    display: flex;
+    align-items: center;
+}
+
+.msger-header-title img {
+    height: 3rem;
+    width: auto;
+    margin-right: 10px;
+}
+
+.msger-header-title p {
+    letter-spacing: 1px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4b79a1;
+}
+
+.msger-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fcfcfe;
+}
+
+.msger-chat::-webkit-scrollbar {
+    width: 8px;
+}
+
+.msger-chat::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+.msger-chat::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+}
+
+.msg {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.msg:last-of-type {
+    margin-bottom: 0;
+}
+
+.msg-img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.msg-bubble {
+    max-width: 80%;
+    padding: 8px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.left-msg .msg-bubble {
+    background: var(--left-msg-bg);
+    color: var(--bot-text-color);
+}
+
+.right-msg .msg-bubble {
+    background: var(--right-msg-bg);
+    color: var(--user-text-color);
+    margin-left: auto;
+}
+
+.msg-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.msg-info-name {
+    font-weight: bold;
+    color: var(--bot-text-color);
+}
+
+.msg-info-time {
+    font-size: 0.75em;
+    color: #ccc;
+}
+
+.msger-inputarea {
+    display: flex;
+    padding: 10px;
+    background: var(--input-bg);
+    border-top: 1px solid #ddd;
+}
+
+.msger-inputarea * {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+.msger-input {
+    flex: 1;
+    background: transparent;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    padding: 10px;
+}
+
+.msger-send-btn {
+    margin-left: 10px;
+    background: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.msger-send-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .msger {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .msger-header-title p {
+        font-size: 1.5rem;
+    }
+
+    .msger-chat {
+        padding: 5px;
+    }
+
+    .msg-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .msg-info-time {
+        font-size: 0.7em;
+    }
+
+    .msger-inputarea {
+        padding: 8px;
+    }
+
+    .msger-input {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .msger-send-btn {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+}
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+    transition: 0.3s ease;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+}
+
+/* Add styling for history items */
+#historyContainer div {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #444;
+    border-radius: 5px;
+}

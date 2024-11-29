@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/070428bd88.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <title>HealthBot</title>
+    <!-- Firebase App and Authentication SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+    <section class="msger">
+        <header class="msger-header">
+            <div class="msger-header-title">
+                <img src="chatbot.png" alt="Chatbot">
+                <p>HealthBot</p>
+            </div>
+        </header>
+        <main class="msger-chat" id="chatContainer">
+            <!-- Initial Bot Message -->
+            <div class="msg left-msg">
+                <div class="msg-img" style="background-image: url(bot.png);"></div>
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">BOT</div>
+                        <div class="msg-info-time"></div>
+                    </div>
+                    <div class="msg-text">
+                        Hi, welcome to HealthBot 😊❤
+                    </div>
+                </div>
+            </div>
+        </main>
+        <form class="msger-inputarea" id="chat-form" onsubmit="sendQuery(event)">
+            <input type="text" class="msger-input" id="userInput" placeholder="Enter your message..." required>
+            <button type="submit" class="msger-send-btn" id="sendBtn"><i class="fa fa-paper-plane"></i></button>
+        </form>
+    </section>
+
+    <script>
+        async function sendQuery(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const query = document.getElementById("userInput").value; // Get user input
+            const chatContainer = document.getElementById("chatContainer");
+
+            // Append user message to chat
+            appendMessage('You', 'right-msg', query);
+
+            try {
+                const res = await fetch('https://bebf-2405-201-e005-402f-a33a-cb80-4f5-2e56.ngrok-free.app/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ input: query })
+                });
+                const data = await res.json();
+                
+                // Append bot response to chat
+                appendMessage('BOT', 'left-msg', data.response); // Display model response
+            } catch (error) {
+                console.error("Error:", error);
+                appendMessage('BOT', 'left-msg', "Error: Unable to fetch response from the model.");
+            }
+
+            document.getElementById("userInput").value = ""; // Clear input field
+        }
+
+        function appendMessage(name, side, text) {
+            const msgHTML = `
+            <div class="msg ${side}">
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">${name}</div>
+                        <div class="msg-info-time">${new Date().toLocaleTimeString()}</div>
+                    </div>
+                    <div class="msg-text">${text}</div>
+                </div>
+            </div>`;
+
+            const chatContainer = document.getElementById("chatContainer");
+            chatContainer.insertAdjacentHTML('beforeend', msgHTML);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
+        }
+    </script>
+</body>
+
+</html>
