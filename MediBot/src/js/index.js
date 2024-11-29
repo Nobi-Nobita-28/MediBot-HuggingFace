@@ -1,12 +1,12 @@
 // import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBdBnxzeacHi8POxnVgyzUeRX_0PvYbV-o",
-    authDomain: "healthcord-594d3.firebaseapp.com",
-    projectId: "healthcord-594d3",
+    apiKey: "AIzaSfeyBdBnx1723zeacHi8POxnVgyzsdfgerUeRX_0PvYbV-o",
+    authDomain: "healthcord-594wd3.firebaseapp.com",
+    projectId: "healthcord-59d4d3",
     storageBucket: "healthcord-594d3.firebasestorage.app",
-    messagingSenderId: "894488652667",
-    appId: "1:894488652667:web:0b035d396500a1fb85abde"
+    messagingSenderId: "8944886353252667",
+    appId: "1:89448865dsf252667:web:0b035d396524sd00a1fb85abde"
 };
 
 // Initialize Firebase
