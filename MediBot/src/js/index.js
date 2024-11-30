@@ -73,29 +73,6 @@ function logout() {
     });
 }
 
-// Load chat history for the logged-in user
-function loadHistory() {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        const userId = user.uid;
-        db.collection("users").doc(userId).collection("history").get().then(querySnapshot => {
-            const historyContainer = document.getElementById("historyContainer");
-            historyContainer.innerHTML = ""; // Clear previous history
-            querySnapshot.forEach(doc => {
-                const message = doc.data().message;
-                const historyItem = document.createElement("div");
-                historyItem.textContent = message;
-                historyContainer.appendChild(historyItem);
-            });
-        }).catch(error => {
-            console.error("Error loading history:", error);
-        });
-    }
-}
-
-// Fetch history when the sidebar is opened
-document.querySelector(".sidebar-toggle").addEventListener("click", loadHistory);
-
 // Send query function
 async function sendQuery(event) {
     event.preventDefault();
